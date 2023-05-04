@@ -1,0 +1,9 @@
+overwrite: true
+schema: 
+generates:
+  ./src/types/generate.ts:
+    plugins:
+      - typescript
+    config:
+      maybeValue: T
+      withHooks: true
