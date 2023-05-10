@@ -1,0 +1,8 @@
+overwrite: true
+schema: 'https://exde-main.cobuildlab.com/graphql'
+generates:
+  ./src/types/generate.ts:
+    plugins:
+      - typescript
+    config:
+      maybeValue: T | undefined | null
