@@ -1,6 +1,6 @@
 {
   "name": "@cobuildlab/exde-shared",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "main": "lib/index.js",
   "types": "./lib/index.d.ts",
@@ -58,5 +58,8 @@
       "prettier --write",
       "eslint --fix"
     ]
+  },
+  "dependencies": {
+    "@cobuildlab/exde-shared": "^0.2.0"
   }
 }

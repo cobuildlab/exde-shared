@@ -1,5 +1,5 @@
 import { PartialDeep } from 'type-fest';
-import { Order, Maybe } from '../types/generate';
+import { Order, Maybe, Business, Recipient, Driver } from '../types/generate';
 import { keyMissingWarn } from './utils';
 import { TrackingManagement } from './tracking';
 
@@ -13,12 +13,22 @@ export type OrderDeliveryType = {
   time: Pick<Order, 'deliveryTime'>;
 };
 
+export type OrderDataType = {
+  bussines: PartialDeep<Business>;
+  recipient: PartialDeep<Business>;
+  driver: PartialDeep<Driver>;
+};
+
 export class OrderManagement {
   private order: PartialDeep<Order> | null;
   private warnParams = keyMissingWarn('Order');
+  private pickTrackingInstance: TrackingManagement | null;
+  private recipentTrackingInstance: TrackingManagement | null;
 
   constructor(order: PartialDeep<Order>) {
     this.order = order;
+    this.pickTrackingInstance = null;
+    this.recipentTrackingInstance = null;
   }
 
   data = (): PartialDeep<Order> | null => {
@@ -83,7 +93,10 @@ export class OrderManagement {
     if (!pickUp) {
       return undefined;
     }
-    return new TrackingManagement(pickUp);
+    if (!this.pickTrackingInstance) {
+      this.pickTrackingInstance = new TrackingManagement(pickUp);
+    }
+    return this.pickTrackingInstance;
   };
 
   getRecipentTracking = (): TrackingManagement | undefined => {
@@ -101,6 +114,9 @@ export class OrderManagement {
     if (!recipent) {
       return undefined;
     }
-    return new TrackingManagement(recipent);
+    if (!this.recipentTrackingInstance) {
+      this.recipentTrackingInstance = new TrackingManagement(recipent);
+    }
+    return this.recipentTrackingInstance;
   };
 }

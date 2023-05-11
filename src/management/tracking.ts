@@ -1,9 +1,19 @@
 import { PartialDeep } from 'type-fest';
-import { Location, Tracking, Maybe } from '../types/generate';
+import {
+  Location,
+  Tracking,
+  Business,
+  Maybe,
+  Recipient,
+} from '../types/generate';
 import { keyMissingWarn } from './utils';
 
 import { DriverManagement } from './driver';
 
+export type TrackingDataReturnType = {
+  bussines?: Maybe<PartialDeep<Business>>;
+  recipent?: Maybe<PartialDeep<Recipient>>;
+};
 export class TrackingManagement {
   private tracking: PartialDeep<Tracking> | null;
   private warnParams = keyMissingWarn('Tracking');
@@ -19,15 +29,14 @@ export class TrackingManagement {
     return new DriverManagement(this.tracking?.driver);
   };
 
-  isPickUp = (): boolean => {
-    return Boolean(this.tracking?.location?.business);
+  getTrackingInfo = (): TrackingDataReturnType => {
+    return {
+      bussines: this.tracking?.location?.business,
+      recipent: this.tracking?.location?.recipient,
+    };
   };
 
-  isRecipent = (): boolean => {
-    return Boolean(this.tracking?.location?.recipient);
-  };
-
-  location = (): PartialDeep<Location> | undefined | null => {
+  location = (): Maybe<PartialDeep<Location>> => {
     return this.tracking?.location;
   };
 }
