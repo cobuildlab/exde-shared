@@ -59,7 +59,5 @@
       "eslint --fix"
     ]
   },
-  "dependencies": {
-    "@cobuildlab/exde-shared": "^0.2.0"
-  }
+  "dependencies": {}
 }
