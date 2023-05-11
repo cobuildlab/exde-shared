@@ -8,9 +8,9 @@ export type OrderDimensionsType = Pick<
   'width' | 'height' | 'weight' | 'unit'
 >;
 export type OrderDeliveryType = {
-  date: Pick<Order, 'deliveryDate'>;
+  date: Maybe<string>;
   instructions: Maybe<string>;
-  time: Pick<Order, 'deliveryTime'>;
+  time: Maybe<string>;
 };
 
 export type OrderDataType = {
