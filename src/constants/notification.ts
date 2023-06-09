@@ -2,7 +2,7 @@ export const NOTIFICATION_TYPES = {
   order: {
     reminder: {
       title: 'Reminder',
-      content: (time: string) =>
+      content: (time: string): string =>
         `You have an order that most be delivered at ${time}`,
     },
     assignment: {

@@ -1,5 +1,6 @@
 // Settings.
 
+// Mobile settings.
 export enum MobileAppSettings {
   REMINDER = 'REMINDER',
   NEW_ORDER = 'NEW_ORDER',
