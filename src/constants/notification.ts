@@ -1,19 +1,19 @@
 export const NOTIFICATION_TYPES = {
   order: {
-    REMINDER: {
+    reminder: {
       title: 'Reminder',
       content: (time: string): string =>
         `You have an order that most be delivered at ${time}`,
     },
-    ORDER_ASSIGNMENT: {
+    assignment: {
       title: 'Order Assignment',
       content: 'A new order was assigned to you',
     },
-    NEW_ORDER: {
+    new: {
       title: 'New Order',
       content: 'There is a new order available for pick-up',
     },
-    ORDER_PROBLEM: {
+    problem: {
       title: 'Order Problem',
       content: 'There has been a problem with the delivery of the order',
     },
